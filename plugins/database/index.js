@@ -1,76 +1,75 @@
-const R = require('rethinkdb')
+'use strict';
+
+const R = require('rethinkdb');
 
 exports.register = function (server, options, next) {
 
-  R.connect({ db: 'pingoo' }, (err, conn) => {
+    server.method({
+        name: 'database.getRecent',
+        method: function (callback) {
 
-      if (err) {
-          throw err;
-      }
+            R
+            .table('pings')
+            .orderBy(R.desc('timestamp'))
+            .run(server.app.db, (err, cursor) => {
 
-      server.app.db = conn;
+                if (err) {
+                    throw err;
+                }
 
-      server.start((err) => {
+                cursor.toArray(callback);
+            });
+        }
+    });
 
-          if (err) {
-              throw err;
-          }
-          console.log('Server started at: ' + server.info.uri);
-      });
-  });
+    server.method({
+        name: 'database.getFlight',
+        method: function (code, callback) {
 
-  server.method({
-      name: 'database.getRecent',
-      method: function (callback) {
+            R
+            .table('pings')
+            .filter({ code: code })
+            .orderBy(R.desc('timestamp'))
+            .run(server.app.db, (err, cursor) => {
 
-          R
-          .table('pings')
-          .orderBy(R.desc('timestamp'))
-          .run(server.app.db, (err, cursor) => {
+                if (err) {
+                    throw err;
+                }
 
-              if (err) {
-                  throw err;
-              }
+                cursor.toArray(callback);
+            });
+        }
+    });
 
-              cursor.toArray(callback);
-          });
-      }
-  });
+    server.method({
+        name: 'database.addPing',
+        method: function (payload, callback) {
 
-  server.method({
-      name: 'database.getFlight',
-      method: function (code, callback) {
+            R
+            .table('pings')
+            .insert(payload)
+            .run(server.app.db, (err) => {
 
-          R
-          .table('pings')
-          .filter({ code: code })
-          .orderBy(R.desc('timestamp'))
-          .run(server.app.db, (err, cursor) => {
+                if (err) {
+                    throw err;
+                }
 
-              if (err) {
-                  throw err;
-              }
+                callback();
+            });
+        }
+    });
 
-              cursor.toArray(callback);
-          });
-      }
-  });
+    R.connect({ db: 'pingoo' }, (err, conn) => {
 
-  server.method({
-      name: 'database.addPing',
-      method: function (payload, callback) {
+        if (err) {
+            return next(err);
+        }
 
-          R
-          .table('pings')
-          .insert(payload)
-          .run(server.app.db, (err) => {
+        server.app.db = conn;
+        next();
+    });
+};
 
-              if (err) {
-                  throw err;
-              }
-
-              callback();
-          });
-      }
-  });
+exports.register.attributes = {
+    pkg: require('./package')
 };
