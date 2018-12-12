@@ -9,7 +9,7 @@ exports.register = function (server, options, next) {
         method: function (callback) {
 
             R
-            .table('pings')
+            .table(options.dbTable)
             .orderBy(R.desc('timestamp'))
             .run(server.app.db, (err, cursor) => {
 
@@ -27,7 +27,7 @@ exports.register = function (server, options, next) {
         method: function (code, callback) {
 
             R
-            .table('pings')
+            .table(options.dbName)
             .filter({ code: code })
             .orderBy(R.desc('timestamp'))
             .run(server.app.db, (err, cursor) => {
@@ -46,7 +46,7 @@ exports.register = function (server, options, next) {
         method: function (payload, callback) {
 
             R
-            .table('pings')
+            .table(options.dbTable)
             .insert(payload)
             .run(server.app.db, (err) => {
 
@@ -59,7 +59,7 @@ exports.register = function (server, options, next) {
         }
     });
 
-    R.connect({ db: 'pingoo' }, (err, conn) => {
+    R.connect({ db: options.dbName }, (err, conn) => {
 
         if (err) {
             return next(err);

@@ -13,7 +13,12 @@ server.connection({ host: 'localhost', port: 4000 });
 
 server.register([
   { register: require('vision') },
-  { register: require('./plugins/database') },
+  { register: require('./plugins/database'),
+    options: {
+      dbName: 'pingoo',
+      dbTable: 'pings'
+    }
+  },
   { register: require('./plugins/portal') },
   { register: require('./plugins/receive') }
 ], (err) => {
