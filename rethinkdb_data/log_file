@@ -1,0 +1,18 @@
+2018-12-12T17:10:03.915759000 40.040914s notice: Recursively removing directory /Users/wendydherin/Projects/pingoo/rethinkdb_data/tmp
+2018-12-12T17:10:03.918560000 40.043722s notice: Initializing directory /Users/wendydherin/Projects/pingoo/rethinkdb_data
+2018-12-12T17:10:03.918723000 40.043878s info: Creating a default database for your convenience. (This is because you ran 'rethinkdb' without 'create', 'serve', or '--join', and the directory '/Users/wendydherin/Projects/pingoo/rethinkdb_data' did not already exist or is empty.)
+2018-12-12T17:10:03.918758000 40.043913s notice: Running rethinkdb 2.3.6 (CLANG 8.1.0 (clang-802.0.42))...
+2018-12-12T17:10:03.925595000 40.050749s notice: Running on Darwin 16.7.0 x86_64
+2018-12-12T17:10:03.925636000 40.050791s notice: Loading data from directory /Users/wendydherin/Projects/pingoo/rethinkdb_data
+2018-12-12T17:10:04.049788000 40.174942s info: Automatically using cache size of 4893 MB
+2018-12-12T17:10:04.050482000 40.175636s notice: Listening for intracluster connections on port 29015
+2018-12-12T17:10:04.052629000 40.177784s notice: Listening for client driver connections on port 28015
+2018-12-12T17:10:04.052771000 40.177925s notice: Listening for administrative HTTP connections on port 8080
+2018-12-12T17:10:04.052774000 40.177928s notice: Listening on cluster addresses: 127.0.0.1, ::1
+2018-12-12T17:10:04.052779000 40.177933s notice: Listening on driver addresses: 127.0.0.1, ::1
+2018-12-12T17:10:04.052782000 40.177936s notice: Listening on http addresses: 127.0.0.1, ::1
+2018-12-12T17:10:04.052789000 40.177943s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2018-12-12T17:10:04.052796000 40.177950s notice: Server ready, "Wendys_MacBook_Pro_local_owx" 23e8098b-a8d5-466e-b6f1-7725c6122c7f
+2018-12-12T17:10:49.337814000 85.464895s info: Table b3d9aa4d-b892-4314-9e1f-09f4f0417302: Starting a new Raft election for term 1.
+2018-12-12T17:10:49.338185000 85.465266s info: Table b3d9aa4d-b892-4314-9e1f-09f4f0417302: Added replica on this server.
+2018-12-12T17:10:49.357080000 85.484162s info: Table b3d9aa4d-b892-4314-9e1f-09f4f0417302: This server is Raft leader for term 1. Latest log index is 0.
